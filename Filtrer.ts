@@ -14,8 +14,10 @@ const users: User[] = [
 
 
 
+
 // Partie 1   
   function filtrerSelonNomEtAge(users: User[], nom: string, age: number): User[] {
+    console.log("filtrerSelonNomEtAge quand le nom est ${nom} et l'âge est ${age}");
     return users.filter(user =>
       user.name.includes(nom) && user.age === age
     );
@@ -24,8 +26,6 @@ const users: User[] = [
   console.log(filtrerSelonNomEtAge(users, "fatou", 25));
   console.log(filtrerSelonNomEtAge(users, "John", 25));
   console.log(filtrerSelonNomEtAge(users, "John", 24));
-
-
 
 // partie 2 
 import * as fs from 'fs';
@@ -43,10 +43,11 @@ function filtreP2(source: User[] | string, nom: string, age: number): User[] {
     } else {
       users = lireAPartirDUnFichier(source);
     }
-  
+    console.log("filtreP2 quand le nom est ${nom} et l'âge est ${age}");
     return users.filter(user =>
-      user.name.includes(nom) && user.age === age
-    );
+      user.name.includes(nom) && user.age === age);
   }
 
+
+  
     
