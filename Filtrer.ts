@@ -1,51 +1,7 @@
-/**  class MyObjects{
-    constructor(public  chaine : string , public age : number ){}
-} 
-
-type dic = {}
-
-function filter(tableau : MyObjects[] ) : MyObjects[]{
-    
-    var tableauObj : MyObjects[] = [];
-    tableau.forEach((obj: MyObjects) => {
-        console.log("1rf");
-        if(obj.age == 25 &&  obj.chaine.includes("john") ){
-            console.log("erf");
-            tableauObj.push(obj);
-            console.log("arf");
-        }
-      });
-    return tableauObj;
-}
-
-
-
-
-console.log(filter([new MyObjects("john", 25)]));  **/
-
-
-//type FilterCriteria = Partial<User>;
-
-
 type User = {
     name: string;
     age: number;
   }
-
-
-  
-
-/**function createFilter(): (user: User) => boolean {
-  return (user: User) => {
-    return Object.entries(criteria).every(([key, value]) => {
-      const userValue = user[key as keyof User];
-      if (typeof value === 'string' && typeof userValue === 'string') {
-        return userValue.includes(value);
-      }
-      return userValue === value;
-    });
-  };
-}**/
 
 
 const users: User[] = [
@@ -55,9 +11,7 @@ const users: User[] = [
     { name: "Anni", age: 25 },
     { name: "Alice", age: 25 },
   ];
-   /**const criteria: FilterCriteria = { name: "John", age: 25 };
-  const filteredUsers = users.filter(createFilter(criteria));
-  console.log(filteredUsers);**/
+
 
 
 // Partie 1   
@@ -72,5 +26,27 @@ const users: User[] = [
   console.log(filtrerSelonNomEtAge(users, "John", 24));
 
 // partie 2 
+import * as fs from 'fs';
+
+function readUsersFromFile(filePath: string): User[] {
+  const data = fs.readFileSync(filePath, 'utf-8');
+  return JSON.parse(data);
+}
+
+
+// partie 2
+function filtreP2(source: User[] | string, nom: string, age: number): User[] {
+    var users: User[];
+  
+    if (Array.isArray(source)) {
+      users = source;
+    } else {
+      users = readUsersFromFile(source);
+    }
+  
+    return users.filter(user =>
+      user.name.includes(nom) && user.age === age
+    );
+  }
 
     
